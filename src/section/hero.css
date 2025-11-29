@@ -1,0 +1,61 @@
+.hero-container{
+    position:relative
+}
+
+/* .hero-container img{
+    width: 25%;
+    position: relative;
+    top: 50%;
+    object-fit: auto;
+    translate: translateX(-50%);
+    left: 40%;
+
+} */
+.hero-content {
+    position: absolute;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* if .overflow-hidden is hiding the heading while not needed, allow visibility inside hero */
+.hero-content .overflow-hidden,
+.overflow-hidden {
+    overflow: visible;
+}
+
+/* visible, responsive title */
+.hero-title {
+    font-size: clamp(3.3rem, 7vw, 8rem);
+    position: relative;
+    top: 99%;
+}
+.hero-text-scroll{
+    border: 0.5vw solid var(--color-milk);
+    transform: rotate(-3deg);
+    margin-bottom: 2rem;
+     position: relative;
+    top: 0%;
+
+}
+.hero-subtitle{
+    position: relative;
+    top: 10%;
+}
+.mixed{
+    position: relative;
+    top: 20%;
+    
+}
+.hero-button{
+    width: 26%;
+    margin-left:19rem;
+}
+h2{
+    position: relative;
+    left: 20%;
+}

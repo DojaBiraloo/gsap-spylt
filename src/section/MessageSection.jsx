@@ -1,0 +1,110 @@
+import React from 'react'
+import './messagesectionn.css'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap';
+import { SplitText, ScrollTrigger } from 'gsap/all';
+
+
+const MessageSection = () => {
+
+    useGSAP(()=>{
+       gsap.registerPlugin(SplitText, ScrollTrigger);
+       const firstMsgSplit= SplitText.create('.first-message',{
+        type:'words',
+       });
+
+       const secondMsgSplit= SplitText.create('.second-message',{
+        type:'words',
+       });
+
+       const paragraphSplit= SplitText.create('.message-content p',{
+        type:'words, lines',
+        linesClass:'paragraph-line',
+       });
+
+       gsap.to(firstMsgSplit.words,{
+        color:'#faeade',
+        ease:'power1.in',
+        stagger:1,
+        scrollTrigger:{
+            trigger:'.message-content',
+            start:'top center',
+            end:'30% center',
+            scrub:true,
+            
+        }
+       })
+
+       gsap.to(secondMsgSplit.words,{
+        color:'#faeade',
+        ease:'power1.in',
+        stagger:1,
+        scrollTrigger:{
+            trigger:'.second-message',
+            start:'top center',
+            end:'bottom center',
+            scrub:true,
+        }
+       })
+
+       const revealTl=gsap.timeline({
+        delay:1,
+        scrollTrigger:{
+            trigger:'.msg-text-scroll',
+            start:'top 100%',
+        },
+       })
+
+       revealTl.to('.msg-text-scroll',{
+        duration:1,
+        clipPath:"polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+        scrub:true,
+        ease:"circ.inOut",
+       })
+
+       const paraTL= gsap.timeline({
+        scrollTrigger:{
+            trigger:'.second-message',
+            start:'70% center',
+            
+        },
+       })
+
+      paraTL.from(paragraphSplit.words, {
+        yPercent:300,
+        rotate:3,
+        ease:'power1.inOut',
+        duration:1,
+        stagger:0.01,
+       })
+    })
+
+    return (
+        <section  className='message-content'>
+            <div  className='container mx-auto flex-center py-28 relative'></div>
+            <div className='w-full h-full'>
+                <div className="my-container2">
+
+                
+                <div className='msg-wrapper'>
+                    <h1 className='first-message'>STIR UP YOUR FEARLESS PAST AND</h1>
+                    <div style={{clipPath:"polygon(0 0, 0 0, 0 100%, 0% 100%)"}} id='scroll' className='msg-text-scroll'>
+                        <div className='bg-light-brown px-6 md:px-18 md:pb-7 pb-5'>
+                            <h2 className='text-red-brown'>FUEL UP</h2>
+                        </div>
+                    </div>
+
+                    <h1 className='second-message'>YOUR FUTURE WITH EVERY GULP OF PERFECT PROTEIN</h1>
+                </div>
+                <div className='flex-center md:mt-20 mt-10'>
+                    <div className='max-w-md px-10 flex-center overflow-hidden'>
+                        <p className='para'>Rev up your level spirit and feed the adventure of life with SPYLT, where you're one chug away from epic nostalgia and fearless fun.</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+export default MessageSection
