@@ -17,7 +17,7 @@ const VideoPinSection = () => {
                     start: "-15% top",
                     end: "200% top",
                     scrub: 1.5,
-                    markers: true,
+                    
                     pin: true, //Very important use this in order to make the animation work very well
                 }
             })
